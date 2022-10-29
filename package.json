@@ -10,6 +10,8 @@
     "@types/node": "^16.18.2",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
+    "imooc-jira-tool": "^1.0.3",
+    "jira-dev-tool": "^1.7.61",
     "qs": "^6.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -19,7 +21,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "json-server": "json-server __json_server_mock__/db.json --watch --port 3001",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -43,6 +44,7 @@
     ]
   },
   "devDependencies": {
+    "@types/qs": "^6.9.7",
     "json-server": "^0.17.0"
   }
 }

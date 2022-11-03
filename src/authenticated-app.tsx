@@ -1,17 +1,40 @@
 import styled from "@emotion/styled"
-import { Button, Dropdown, Menu, PageHeader } from "antd"
+import { Button, Dropdown, Menu} from "antd"
 import { Row } from "components/lib"
 import { useAuth } from "context/auth-context"
 import React from "react"
 import { ProjectListScreen } from "screens/project-list"
 import {ReactComponent as SoftwareLogo} from 'assets/software-logo.svg'
+import {Navigate,Route, Routes} from 'react-router'
+import {BrowserRouter as Router} from "react-router-dom"
+import { ProjectScrren } from "screens/project"
+import { resetRoute } from "utils"
 export const AuthenticatedApp=()=>{
-    const {logout,user}=useAuth()
+
   return (
 <Container>
-  <Header between={true}>
+  <PageHeader></PageHeader>
+  <Main>
+  <Router>
+  <Routes>
+    <Route path={'/projects'} element={<ProjectListScreen></ProjectListScreen>}></Route>
+    <Route path={'/projects/:projectId/*'} element={<ProjectScrren></ProjectScrren>}></Route>
+    <Route path="/" element={<Navigate to={'/projects'}></Navigate>}></Route>
+  </Routes>
+  </Router>
+  </Main>
+</Container>
+  ) 
+  
+}
+const PageHeader=()=>{
+  const {logout,user}=useAuth()
+  const value:any=undefined
+ return  <Header between={true}>
     <HeaderLeft gap={true}>
+      <Button type={'link'} onClick={resetRoute}>
       <SoftwareLogo width={'18rem'} color={'rgb(38,132,255)'}></SoftwareLogo>
+      </Button>
       <h2>项目</h2>
       <h2>用户</h2>
     </HeaderLeft>
@@ -27,12 +50,6 @@ export const AuthenticatedApp=()=>{
         </Dropdown>
     </HeaderRight>
   </Header>
-  <Main>
-  <ProjectListScreen></ProjectListScreen>
-  </Main>
-</Container>
-  ) 
-  
 }
 const HeaderItem=styled.h3`
   margin-right: 3rem;
